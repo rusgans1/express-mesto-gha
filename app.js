@@ -17,7 +17,7 @@ app.use(helmet());
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '647a27ac9af022e6ff58bc4c',
+    _id: '647a43664bf956a34f7ea6fd',
   };
   next();
 });
@@ -29,6 +29,6 @@ app.use('*', (req, res) => {
 });
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
 app.listen(PORT, () => console.log('Сервер запущен'));
