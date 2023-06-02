@@ -15,13 +15,15 @@ const getIncorrectError = (res, mess) => {
 };
 
 const getError = (err, res, mess, unMess) => {
-  if ((err.name === 'ValidationError') || (err.name === 'CastError')) {
+  if (err.name === 'ValidationError') {
     getIncorrectError(res, mess);
-  } else if (err.name === 'NotFound') {
+  } else if (err.name === 'CastError') {
+    getIncorrectError(res, mess);
+  } else if (err.message === 'NotFound') {
     getUnfindError(res, unMess);
   } else {
     getDefaultError(res);
   }
 };
 
-module.exports = { getDefaultError, getError };
+module.exports = { getDefaultError, getUnfindError, getError };

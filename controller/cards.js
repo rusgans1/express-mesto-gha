@@ -44,7 +44,11 @@ const setLike = (req, res) => {
 };
 
 const removeLike = (req, res) => {
-  Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
+  Card.findByIdAndUpdate(
+    req.params.cardId,
+    { $pull: { likes: req.user._id } },
+    { new: true },
+  )
     .orFail(() => {
       throw new Error('NotFound');
     })
