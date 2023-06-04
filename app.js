@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
 const { loginUser, createUser } = require('./controller/users');
 const { userValidation, loginValidation } = require('./middlewares/validation');
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(helmet());
 app.use(cookieParser());
+app.use(rateLimit());
 
 app.use('/signin', loginValidation, loginUser);
 app.use('/signup', userValidation, createUser);
